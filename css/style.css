@@ -1,0 +1,40 @@
+body{
+  background-color: rebeccapurple;
+}
+
+.mainClass{
+
+}
+
+.header{
+
+}
+
+h1{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 50px;
+  text-align: center;
+}
+
+.products{
+}
+
+.img-box img{
+ border: 5px dotted red;
+ border-radius: 10px;
+ width: 30%;
+ height: auto;
+
+}
+
+.results{
+ border: 5px solid black;
+ text-align: center;
+}
+
+ul{
+  background-color: indianred;
+  font-size: 25px;
+  color: beige;
+  font-family: 'Acme', sans-serif;
+}
