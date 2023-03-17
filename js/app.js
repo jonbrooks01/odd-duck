@@ -129,12 +129,13 @@ function renderChart() {
         label: '# of Votes',
         data: productVotes,
         borderWidth: 2,
-        backgroundColor: '#9BD0F5'
+        backgroundColor: 'blue'
       },
       {
         label: '# of Views',
         data: productViews,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: 'green'
       }
       ]
     },
@@ -183,7 +184,7 @@ function handleResults() {
       resultsLi.append(liElem);
     }
     resultsBut.style.display = 'none';
-    renderChart;
+    renderChart();
   }
 }
 
