@@ -74,6 +74,8 @@ ul{
   border: 5px solid lightskyblue;
   border-radius: 10px;
   justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 canvas{
@@ -86,4 +88,19 @@ footer {
   background-color: burlywood;
   border: 5px solid lightskyblue;
   border-radius: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: green;
+  box-shadow: 10px 10px 10px black;
+
+}
+
+button{
+  font-family: 'Acme', sans-serif;
+  background-color: orange;
+  padding: 10px;
+  height: 60px;
+  place-self: center;
 }
