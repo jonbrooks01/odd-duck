@@ -4,6 +4,7 @@
 // <!-- Global Variables -->
 let numVotes = 25;
 
+let indexNew = [];
 const state = {
   allProductsArray: [],
 };
@@ -17,6 +18,12 @@ let imgThree = document.getElementById('img-three');
 let resultsBut = document.getElementById('resBut');
 let resultsLi = document.getElementById('results-li');
 
+
+// chart Reference
+
+const ctx = document.getElementById('chartAnswers');
+
+
 // <!-- CONSTRUCTOR function -->
 
 function Product(name, fileExtension = 'jpg') {
@@ -26,7 +33,7 @@ function Product(name, fileExtension = 'jpg') {
   this.img = `img/${name}.${fileExtension}`;
 
   state.allProductsArray.push(this);
-};
+}
 
 let bag = new Product('bag');
 let banana = new Product('banana');
@@ -58,17 +65,31 @@ function getRandomNum() {
 
 function renderPics() {
 
-  let numOne = getRandomNum();
-  let numTwo = getRandomNum();
-  let numThree = getRandomNum();
+  // let numOne = getRandomNum();
+  // let numTwo = getRandomNum();
+  // let numThree = getRandomNum();
 
-  if (numOne === numTwo) {
-    numTwo = getRandomNum();
-  } else if (numOne === numThree) {
-    numThree = getRandomNum();
-  } else if (numThree === numTwo) {
-    numTwo = getRandomNum();
+  // if (numOne === numTwo) {
+  //   numTwo = getRandomNum();
+  // } else if (numOne === numThree) {
+  //   numThree = getRandomNum();
+  // } else if (numThree === numTwo) {
+  //   numTwo = getRandomNum();
+  // }
+
+
+  while (indexNew.length < 6) {
+    let number = getRandomNum();
+    if (!indexNew.includes(number)) {
+      indexNew.push(number);
+    }
   }
+  console.log(indexNew);
+  let numOne = indexNew.shift();
+  let numTwo = indexNew.shift();
+  let numThree = indexNew.shift();
+  console.log(indexNew);
+
 
 
   imgOne.src = state.allProductsArray[numOne].img;
@@ -86,6 +107,52 @@ function renderPics() {
   state.allProductsArray[numThree].looks++;
   console.log(state.allProductsArray[numThree].looks++);
 }
+
+// Function to render chart
+
+function renderChart() {
+  ctx.style.display = 'block';
+  let productVotes = [];
+  let productViews = [];
+  let productNames = [];
+
+  for (let i = 0; i < state.allProductsArray.length; i++) {
+    productNames.push(state.allProductsArray[i].name);
+    productViews.push(state.allProductsArray[i].looks);
+    productVotes.push(state.allProductsArray[i].call);
+  }
+  let chartResults = {
+    type: 'bar',
+    data: {
+      labels: productNames,
+      datasets: [{
+        label: '# of Votes',
+        data: productVotes,
+        borderWidth: 2,
+        backgroundColor: 'blue'
+      },
+      {
+        label: '# of Views',
+        data: productViews,
+        borderWidth: 1,
+        backgroundColor: 'green'
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  }
+
+  new Chart(ctx, chartResults);
+
+
+}
+
 
 
 // <!-- Event Handler -->
@@ -116,11 +183,13 @@ function handleResults() {
       liElem.textContent = `${state.allProductsArray[i].name} had ${state.allProductsArray[i].call} votes, and was seen ${state.allProductsArray[i].looks} times. `;
       resultsLi.append(liElem);
     }
+    resultsBut.style.display = 'none';
+    renderChart();
   }
 }
 
 imgBox.addEventListener('click', handleClick);
-resultsBut.addEventListener('click',handleResults);
+resultsBut.addEventListener('click', handleResults);
 
 
 
