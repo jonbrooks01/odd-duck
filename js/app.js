@@ -35,26 +35,33 @@ function Product(name, fileExtension = 'jpg') {
   state.allProductsArray.push(this);
 }
 
-let bag = new Product('bag');
-let banana = new Product('banana');
-let bathroom = new Product('bathroom');
-let boots = new Product('boots');
-let breakfast = new Product('breakfast');
-let bubblegum = new Product('bubblegum');
-let chair = new Product('chair');
-let cthulhu = new Product('cthulhu');
-let dogDuck = new Product('dog-duck');
-let dragon = new Product('dragon');
-let pen = new Product('pen');
-let petSweep = new Product('pet-sweep');
-let scissors = new Product('scissors');
-let shark = new Product('shark');
-let sweep = new Product('sweep', 'png');
-let tauntaun = new Product('tauntaun');
-let unicorn = new Product('unicorn');
-let waterCan = new Product('water-can');
-let wineGlass = new Product('wine-glass');
+let retrievedProducts = localStorage.getItem('products');
+let parsedGoats = JSON.parse(retrievedProducts);
 
+if (retrievedProducts) {
+  state.allProductsArray = parsedGoats;
+} else {
+
+  let bag = new Product('bag');
+  let banana = new Product('banana');
+  let bathroom = new Product('bathroom');
+  let boots = new Product('boots');
+  let breakfast = new Product('breakfast');
+  let bubblegum = new Product('bubblegum');
+  let chair = new Product('chair');
+  let cthulhu = new Product('cthulhu');
+  let dogDuck = new Product('dog-duck');
+  let dragon = new Product('dragon');
+  let pen = new Product('pen');
+  let petSweep = new Product('pet-sweep');
+  let scissors = new Product('scissors');
+  let shark = new Product('shark');
+  let sweep = new Product('sweep', 'png');
+  let tauntaun = new Product('tauntaun');
+  let unicorn = new Product('unicorn');
+  let waterCan = new Product('water-can');
+  let wineGlass = new Product('wine-glass');
+}
 console.log(state.allProductsArray);
 
 // <!-- Helper function -->
@@ -172,6 +179,8 @@ function handleClick(event) {
 
   if (numVotes === 0) {
     imgBox.removeEventListener('click', handleClick);
+    let stringifiedProducts = JSON.stringify(state.allProductsArray);
+    localStorage.setItem('products', stringifiedProducts);
   }
   console.log(numVotes);
 }
