@@ -2,8 +2,7 @@
 
 ## Odd Duck
 
-I build an app with a direct and powerful purpose. It does all of the things that it accomplishes well. I should describe the purpose and functionality so those that visit my README understand the app
-
+I built this website to take a poll on products and get users input on which product they would like to purchase. The poll was then viewed as a chart with how many views each item received and how many times the item was selected.
 ### Author: Jonathan Brooks
 
 ### Links and Resources
